@@ -2,12 +2,14 @@ const express = require('express');
 const app = express();
 const morgan = require('morgan');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser')
 
 require('dotenv/config');
 
 const api = process.env.API_URL;
 // Middleware
-app.use(express.json());
+// app.use(express.json());
+app.use(bodyParser.json());
 app.use(morgan('tiny'))
 
 app.get(`${api}/products`, (req, res) =>{
@@ -15,7 +17,7 @@ app.get(`${api}/products`, (req, res) =>{
         id: 1,
         name: 'hair dresser',
         image: 'some_URLs',
-    }
+    } 
     res.send(product);
 })
 app.post(`${api}/products`, (req, res) =>{
@@ -24,7 +26,9 @@ app.post(`${api}/products`, (req, res) =>{
     res.send(newProduct)
 })
 
-mongoose.connect(proess.env.CONNECTION_STRING)
+mongoose.connect(proess.env.CONNECTION_STRING, {
+   useNewUrlParser: true,
+})
 .then(()=>{
   console.log('Database Connection is ready...')
 })
