@@ -1,7 +1,6 @@
 import React from 'react';
 import { Button, Text, View, StyleSheet } from 'react-native';
 
-
 const Todo = (props) => {
     return (
        <View styles={[{margin: 8, padding: 8},styles.item, ]}>
@@ -11,7 +10,6 @@ const Todo = (props) => {
             color={'red'}
             onPress={() => props.delete(props.item)}
         >
-
         </Button>
        </View>
     )
@@ -19,6 +17,7 @@ const Todo = (props) => {
 
 const styles = StyleSheet.create({
     item: {
+        display: 'flex',
         flexDirection: 'row',
         JustifyContent: 'space-between',
         alignItems: 'center',
