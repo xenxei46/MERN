@@ -5,7 +5,7 @@ import Todo from './todo';
 const TodoList = () => {
     const [title, setTitle] = useState('TodoList');
     const [text, setText] = useState();
-    const [list, setList] = useState(['My list']);
+    const [list, setList] = useState([]);
 
     const addItem = () => {
         const updatedList = list;
@@ -15,25 +15,26 @@ const TodoList = () => {
     }
 
     const deleteItem = (index) => {
-        const updatedList = list.filter((todo) => todo !== index);
+        const updatedList = list.filter[(todo) => todo !== index];
         setList(updatedList);
-      };
+    }
 
     return (
         <View style={{ width: '80%', marginBottom: 60}}>
             <Text style={[styles.align, styles.font]}>{title}</Text>
             <ScrollView>
-            {list.map((x, index) => (
-              <Todo key={index} item={x} index={index} delete={deleteItem} />
-            ))}
-        </ScrollView>
+              
+                {list.map((x, index) => 
+                    <Todo key={index} item={x} index={index} delete={deleteItem}/>
+                )}
+            </ScrollView>
             <View>
-                <TextInput 
-                style={styles.input}
-                value={text}
-                onChangeText={(text) => setText(text)}
-                />
-                <Button title='Add item' onPress={addItem}/>  
+            <TextInput 
+            style={styles.input}
+            value={text}
+            onChangeText={(text) => setText(text)}
+            />
+            <Button title='Add item' onPress={addItem}/>  
             </View>     
         </View>
     )}
