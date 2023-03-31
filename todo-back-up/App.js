@@ -1,13 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import TodoList from './todolist';
 
-// screens
-import ProductContainer from './screens/products/productContainer';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <ProductContainer/>
+      <Text>
+        <TodoList></TodoList>
+      </Text>
+      <StatusBar style="auto" />
     </View>
   );
 }
