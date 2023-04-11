@@ -31,21 +31,22 @@
 // export default ProductContainer;
 
 import { StyleSheet, Text, View } from 'react-native';
-import { useState, useEffect } from 'react';
+import React,{ useState, useEffect } from 'react';
 
 const data = require('../../assets/data/products.json');
 
-const [products, setProducts] = useState([]);
-
-useEffect(() => {
-            setProducts(data);
-    
-            return () => {
-                setProducts([])
-            }
-        }, [])
 
 const productContainer = () => {
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+        setProducts(data);
+    
+        return () => {
+            setProducts([])
+        }
+    }, [])
+
   return (
     <View>
       <Text>products </Text>
@@ -53,6 +54,6 @@ const productContainer = () => {
   )
 }
 
-export default productContainer
+export default productContainer;
 
 const styles = StyleSheet.create({})
