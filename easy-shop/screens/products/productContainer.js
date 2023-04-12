@@ -1,59 +1,45 @@
-// import React, { useState, useEffect } from 'react';
-// import { View, Text, StyleSheet, ActivityIndicator, FlatList } from 'react-native';
-
-// const data = require('../../assets/data/products.json');
-
-// const ProductContainer = () => {
-    
-//     const [ products, setProducts ] = useState([]);
-
-//     useEffect(() => {
-//         setProducts(data);
-
-//         return () => {
-//             setProducts([])
-//         }
-//     }, [])
-
-//     return (
-//         <View style={{marginTop: 100}}>
-//             <Text>Product Container</Text>
-//             <FlatList
-//                 horizontal
-//                 data={products}
-//                 renderitem={({item}) => <Text>{item.brand}</Text>}
-//                 keyExtractor={item => item.name}
-//             />
-//         </View>
-//     )
-// }
-
-// export default ProductContainer;
-
-import { StyleSheet, Text, View } from 'react-native';
-import React,{ useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { View, Text, StyleSheet, ActivityIndicator, FlatList } from 'react-native';
+import ProductList from './ProductList';
 
 const data = require('../../assets/data/products.json');
 
+const ProductContainer = () => {
 
-const productContainer = () => {
-    const [products, setProducts] = useState([]);
+  const [ products, setProducts ] = useState([]);
 
-    useEffect(() => {
-        setProducts(data);
-    
-        return () => {
-            setProducts([])
-        }
-    }, [])
+  useEffect(() => {
+    setProducts(data);
 
-  return (
-    <View>
-      <Text>products </Text>
-    </View>
-  )
+    return () => {
+      setProducts([])
+    }
+  }, [])
+     
+    return (
+      <View>
+        {/* <Text>Product Container</Text> */}
+        <View style={{}}>
+        <FlatList
+          // horizontal
+          numColumns={2}
+          data={products}
+          renderItem={({item}) => <ProductList
+          key={item.id}
+          item={item}
+          />}
+          keyExtractor={item => item.name}
+        />
+        </View>
+      </View>      
+    )
 }
 
-export default productContainer;
+export default ProductContainer;
+// const styles = StyleSheet.create({
+//   container: {
+//     flexWrap: "wrap",
+//     backgroundColor: "gainsboro",
+//   },
+// })
 
-const styles = StyleSheet.create({})

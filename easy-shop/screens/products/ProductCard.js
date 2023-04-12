@@ -1,41 +1,37 @@
-import React from 'react'
-import {
+import {  
     StyleSheet,
+    Text, 
     View,
     Dimensions,
     Image,
-    Text,
     Button
-} from 'react-native'
-import Toast from 'react-native-toast-message'
-import EasyButton from "../../Shared/StyledComponents/EasyButton"
-import { connect } from 'react-redux'
-import * as actions from '../../Redux/Actions/cartActions';
+ } from 'react-native';
+
+import React from 'react';
 
 var { width } = Dimensions.get("window");
 
 const ProductCard = (props) => {
     const { name, price, image, countInStock } = props;
-
-    return (
-        <View style={styles.container}>
-            <Image 
+  return (
+    <View style={styles.container}>
+         <Image 
             style={styles.image}
             resizeMode="contain"
             source={{uri: image ? 
-                image : 'https://cdn.pixabay.com/photo/2012/04/01/17/29/box-23649_960_720.png'}}
+            image : 'https://cdn.pixabay.com/photo/2012/04/01/17/29/box-23649_960_720.png'}}
             />
             <View style={styles.card}/>
             <Text style={styles.title}>
+                {/* Here is an if condition, if name is > 15 view elipsis */}
                 {name.length > 15 ? name.substring(0, 15 - 3)
                     + '...' : name
                 }
             </Text>
             <Text style={styles.price}>${price}</Text>
-
             { countInStock > 0 ? (
                 <View style={{ marginBottom: 60 }}>
-                    <EasyButton 
+                    {/* <EasyButton 
                     primary
                     medium
                     onPress={() => {
@@ -47,24 +43,20 @@ const ProductCard = (props) => {
                             text2: "Go to your cart to complete order"
                         })
                     }}
-                    >
+                    > */}
                         <Text style={{ color: "white"}}>Add</Text>
-                    </EasyButton>
+                    {/* </EasyButton> */}
                 </View>
             ) : <Text style={{ marginTop: 20 }}>Currently Unavailable</Text>}
-        </View>
-    )
+    </View>
+  )
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        addItemToCart: (product) => 
-            dispatch(actions.addToCart({quantity: 1, product}))
-    }
-}
+export default ProductCard;
 
 const styles = StyleSheet.create({
     container: {
+        display: 'flex',
         width: width / 2 - 20,
         height: width / 1.7,
         padding: 10,
@@ -100,5 +92,3 @@ const styles = StyleSheet.create({
         marginTop: 10
     }
 })
-
-export default connect(null, mapDispatchToProps)(ProductCard);
