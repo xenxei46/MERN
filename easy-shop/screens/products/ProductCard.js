@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
         display: 'flex',
         width: width / 2 - 20,
         height: width / 1.7,
-        padding: 10,
+        padding: 20,
         borderRadius: 10,
         marginTop: 55,
         marginBottom: 5,
