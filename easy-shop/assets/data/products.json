@@ -45,7 +45,7 @@
   "name": "Swimming Pool",
   "description": "beautiful Swimming Pool for garden",
   "category": {
-    "$oid": "5f15d5b7cb4a6642bddc0fe8"
+    "$oid": "1f15d5b7cb4a6642bddc0fe8"
   },
   "countInStock": 10,
   "__v": 0
@@ -68,7 +68,7 @@
   "__v": 0
 },{
   "_id": {
-    "$oid": "5f15da13e520d44421ed8e9e"
+    "$oid": "6f15da13e520d44421ed8e9e"
   },
   "image": "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/69/2255491/1.jpg?8284",
   "brand": "Mobilix",
@@ -79,7 +79,7 @@
   "name": "Sofa",
   "description": "Big Sofa for living room",
   "category": {
-    "$oid": "5f15d5b2cb4a6642bddc0fe7"
+    "$oid": "6f15d5b2cb4a6642bddc0fe7"
   },
   "countInStock": 2,
   "__v": 0
