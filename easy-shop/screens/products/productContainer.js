@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { View, StyleSheet, ActivityIndicator, FlatList } from 'react-native';
-import { Container, Header, Icon, Item, Input, Text} from 'native-base'
+import { View, Text, StyleSheet,ActivityIndicator, FlatList } from 'react-native';
+// import {  Header, Icon, Item, Input, Container} from 'native-base';
+import { Button, Container, Heading, Icon, Item, Input } from 'native-base';
 import ProductList from './ProductList';
 
 const data = require('../../assets/data/products.json');
@@ -10,7 +11,7 @@ const ProductContainer = () => {
   const [ products, setProducts ] = useState([]);
 
   useEffect(() => {
-    setProducts(data);
+    setProducts(data); 
 
     return () => {
       setProducts([])
@@ -18,15 +19,14 @@ const ProductContainer = () => {
   }, [])
      
     return (
-      <Container>
-        <Header searchBar rounded>
-          <Item>
-            <Icon name='ios-search'/>
-            <Input placeholder='Search'/>
-          </Item>
-        </Header>
-        <View>
-          <Text>Product Container</Text>
+    <Container>
+      <View>
+      {/* <Heading> */}
+          {/* A component library for the */}
+          <Text color="emerald.500"> React Ecosystem</Text>
+      {/* </Heading> */}
+      <View>
+          
           <View style={{marginTop: 20}}>
           <FlatList
             // horizontal
@@ -38,17 +38,19 @@ const ProductContainer = () => {
             />}
             keyExtractor={item => item.name}
           />
+           <Button variant='outline' onPress={() => console.log('pressed')}>Click me</Button>
           </View>
-      </View>  
-      </Container>    
+      </View> 
+     </View> 
+    </Container>      
     )
 }
 
 export default ProductContainer;
-// const styles = StyleSheet.create({
-//   container: {
-//     flexWrap: "wrap",
-//     backgroundColor: "gainsboro",
-//   },
-// })
+const styles = StyleSheet.create({
+  container: {
+    flexWrap: "wrap",
+    backgroundColor: "gainsboro",
+  },
+})
 

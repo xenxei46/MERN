@@ -4,6 +4,7 @@ import Header from './Shared/Header';
 
 // screens
 import ProductContainer from './screens/products/productContainer';
+import { NativeBaseProvider } from 'native-base';
 // import { isIphoneX } from 'react-native-iphone-x-helper'
 // import type { KeyboardAwareInterface } from './KeyboardAwareInterface'  
 
@@ -11,10 +12,12 @@ import ProductContainer from './screens/products/productContainer';
 
 export default function App() {
   return (
+    <NativeBaseProvider>
     <View style={styles.container}>
       <Header/>
       <ProductContainer/>
     </View>
+    </NativeBaseProvider>
   );
 }
 
