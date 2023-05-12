@@ -6,8 +6,8 @@ const data = require('../../assets/data/products.json');
 
 var { width } = Dimensions.get("window");
 
-const SearchedProduct = (props) => {
-    const { productsFiltered } = props;
+const SearchedProduct = ({productsFiltered}) => {
+    // const { productsFiltered } = props;
     return(
         <View style={{width:width}}>
             {productsFiltered.length > 0 ? (
@@ -18,7 +18,7 @@ const SearchedProduct = (props) => {
                                 props.navigation.navigate("Product Detail", {item: item})
                             }}
                         renderItem={({item}) => 
-                        <View style={{display:'flex', flexDirection:'row', backgroundColor:'red',height:80 }} key={item.id}
+                        <View style={{flex:1, flexDirection:'row', backgroundColor:'red',height:80 }} key={item.id}
                         item={item}>
                             <View style={{backgroundColor:'green', height:'100%', flex:1 }}>
                                 <Avatar size="48px" source={{

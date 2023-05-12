@@ -24,9 +24,9 @@
 //     }
 //   }, [])
      
-//   const searchProduct = (text) => {
+//   const searchProduct = (searchdata) => {
 //     setProductsFiltered(
-//       products.filter((i) => i.name.toLowerCase().includes(text.toLowerCase()))
+//       products.filter((item) => item.name.toLowerCase().includes(searchdata.toLowerCase()))
 //     );
 //   };
 
@@ -100,18 +100,47 @@
 //   },
 // })
  
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import Banner from '../../Shared/Banner'
+import { StyleSheet, Text, View,TextInput,SafeAreaView } from 'react-native'
+import React, {useState} from 'react'
+import Banner from '../../Shared/Banner';
+
+const products = require('../../assets/data/products.json')
 
 const productContainer = () => {
+  const [search, setSearch] = React.useState('search products...');
+  console.log(products.filter(item=>item.name.toLowerCase().includes(search)));
+  console.log(products)
   return (
-    <View>
-      <Banner />
-    </View>
+    <SafeAreaView>
+      <TextInput
+        style={styles.input}
+        onChangeText={(e) => setSearch(e)}
+        value={search}
+      />
+      <View>
+        {products.filter((item) => item.name.toLowerCase().includes(search)
+        ).map((item) => (
+          <View key={item.id}>
+            <Text>{item.name}</Text>
+            <Text>{item.description}</Text>
+          </View>
+
+        ))}
+      </View>
+    </SafeAreaView>
   )
 }
 
 export default productContainer
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  input: {
+    height: 40,
+    margin: 12,
+    borderWidth: 1,
+    padding: 10,
+  },
+});
+
+
+  
