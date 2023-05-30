@@ -5,8 +5,11 @@ import { MaterialIcons } from "@expo/vector-icons";
 import ProductList from './ProductList';
 import SearchedProduct from './SearchedProducts';
 // import Banner from '../../Shared/Banner';
+import CategoryFilter from './CategoryFilter';
 
 const data = require('../../assets/data/products.json');
+const prodCat = require('../../assets/data/categories.json');
+
 
 const ProductContainer = () => {
 
@@ -14,14 +17,27 @@ const ProductContainer = () => {
   const [ focus, setFocus ] = useState([]);
   // const [ productsFiltered, setProductsFiltered ] = useState('search products...');
   const [search, setSearch] = React.useState('');
+  const [categories, setCategories] = useState([]);
+  const [active, setActive] = useState();
+  const [initialState, setinitialState] = useState([]);
+  const [productsCtg, setProductsCtg] = useState([]);
 
   useEffect(() => {
     setProducts(data);
     // setProductsFiltered(data);
-    setSearch(search)
+    setSearch(search);
     setFocus(false);
+    setCategories(prodCat);
+    setActive(-1);
+    setinitialState(data)
     return () => {
       setProducts([])
+      setSearch([])
+      setFocus();
+      setCategories([])
+      setProductsCtg(data);
+      setActive()
+      setinitialState()
     }
   }, [])
      
@@ -44,6 +60,20 @@ const ProductContainer = () => {
     const onBlur = () => {
       setFocus(false);
     }
+
+      // Categories
+      const changeCtg = (ctg) => {
+        {
+          ctg === "all"
+            ? [setProductsCtg(initialState), setActive(true)]
+            : [
+                setProductsCtg(
+                  products.filter((i) => i.category._id === ctg),
+                  setActive(true)
+                ),
+              ];
+        }
+      };
 
     return (
     <Container>
@@ -91,18 +121,32 @@ const ProductContainer = () => {
               <View>
                 {/* <Banner/> */}
               </View>
-                <View>
-                    <FlatList
-                      // horizontal
-                      numColumns={2}
-                      data={products}
-                      renderItem={({item}) => <ProductList
-                      key={item.id}
-                      item={item}
-                      />}
-                      keyExtractor={item => item.name}
-                    />
-                </View>
+              <View>
+              <CategoryFilter
+                  categories={categories}
+                  categoryFilter={changeCtg}
+                  productsCtg={productsCtg}
+                  active={active}
+                  setActive={setActive}
+                />
+              </View>
+              {productsCtg.length > 0 ? (
+                    <View style={styles.listContainer}>
+                        {productsCtg.map((item) => {
+                            return(
+                                <ProductList
+                                    // navigation={props.navigation}
+                                    key={item._id}
+                                    item={item}
+                                />
+                            )
+                        })}
+                    </View>
+            ) : (
+           <View style={[styles.center, { height: '80%'}]}>
+               <Text>No products found</Text>
+           </View>
+              )}
             </View>
            {/* <Button variant='outline' onPress={() => console.log('pressed')}>Click me</Button> */}
           </View>
@@ -115,6 +159,17 @@ const ProductContainer = () => {
 export default ProductContainer;
 const styles = StyleSheet.create({
   container: {
+    flexWrap: "wrap",
+    backgroundColor: "gainsboro",
+    width:'100%',
+    height:'100%'
+  },
+  listContainer: {
+    height: '80%',
+    width:'100%',
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "flex-start",
     flexWrap: "wrap",
     backgroundColor: "gainsboro",
   },

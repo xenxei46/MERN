@@ -1,14 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import Header from './Shared/Header';
+import { LogBox } from "react-native";
 
 // screens
 import ProductContainer from './screens/products/productContainer';
 import { NativeBaseProvider } from 'native-base';
-// import { isIphoneX } from 'react-native-iphone-x-helper'
-// import type { KeyboardAwareInterface } from './KeyboardAwareInterface'  
-
-// const _KAM_DEFAULT_TAB_BAR_HEIGHT: number = isIphoneX() ? 83 : 49
+LogBox.ignoreAllLogs(true);
 
 export default function App() {
   return (
@@ -24,10 +22,11 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     // display: 'flex',
-    // width: '100%',
+    width: '100%',
+    height:'100%',
     flex: 1,
     // flexDirection: 'row',
-    // backgroundColor: 'yellow',
+    backgroundColor: 'yellow',
     alignItems: 'center',
     justifyContent: 'center',
 
